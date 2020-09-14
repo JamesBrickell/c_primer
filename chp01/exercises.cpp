@@ -90,6 +90,12 @@ int xToY(){
     std::cout << "Enter two numbers: " << std::endl; //print request to user
     std::cin >> x >> y; //Users input is stored in x and y
 
+    while (y < x){
+        std::cout << "Please enter a number greater than the first." << std::endl;
+        std::cin >> y;
+        std::endl;
+    }
+    
     while (x <= y){
         std::cout << x++ << std::endl;// prints x and increments its value
     }
@@ -114,22 +120,51 @@ int fiftyToHundredFor(){
 }
 
 int sumOfCin(){
-    int sum = 0, val = 0, go = 1;
+    /*
+    Takes values from users and prints the sum.
+    */
     
+    int sum = 0, val = 0, go = 1; // init three int vars
+    
+    //loop goes while true 
     while(go){
-        std::cout << "Enter a value:" << std::endl;
-        std::cin >> val;
+        std::cout << "Enter a value:" << std::endl; // print
+        std::cin >> val;// assigns val with the users input
         
-        sum += val;
+        sum += val; // sum = sum + value
         
-        std::cout << "Continue (1)  or Stop (0) ? " << std::endl;
-        std::cin >> go;
+        std::cout << "Continue (1)  or Stop (0) ? " << std::endl;// print 
+        std::cin >> go; // assigns go with user input
     }
 
-    std::cout << sum << std::endl; 
+    std::cout << sum << std::endl; // print sum 
 
     return 0;
 
+}
+
+int cntVal()
+{
+    // currVal is the number we're counting; we'll read new values into val
+    int currVal = 0, val = 0;
+    // read first number and ensure that we have data to process
+    if (std::cin >> currVal) {
+        int cnt = 1;  // store the count for the current value we're processing
+        while (std::cin >> val) { // read the remaining numbers
+            if (val == currVal)   // if the values are the same
+                ++cnt;            // add 1 to cnt
+            else { // otherwise, print the count for the previous value
+                std::cout << currVal << " occurs "
+                          << cnt << " times" << std::endl;
+                currVal = val;    // remember the new value
+                cnt = 1;          // reset the counter
+            }
+        }  // while loop ends here
+        // remember to print the count for the last value in the file
+        std::cout << currVal <<  " occurs "
+                  << cnt << " times" << std::endl;
+    } // outermost if statement ends here
+    return 0;
 }
 
 int main(){
@@ -139,13 +174,13 @@ int main(){
     */
     
     //exercise 1.3
-    //helloWorld();
+    helloWorld();
 
     //excercise 1.4
-    //product();
+    product();
     
     //excercise 1.5
-    //sum(); 
+    sum(); 
 
     //excercise 1.6
     /*
@@ -158,19 +193,22 @@ int main(){
     */
 
    //excercise 1.9
-   //sumFifttyToHundred();
+   sumFifttyToHundred();
 
     //exercise1.10
-    //tenToZero();
+    tenToZero();
 
     //excercise 1.11
-    //xToY();
+    xToY();
 
     //excercise 1.13
-    //fiftyToHundredFor();
+    fiftyToHundredFor();
 
     //excercise 1.16
     sumOfCin();
+    
+    //exercise 1.18
+    cntVal();
     
     return 0;
 }
